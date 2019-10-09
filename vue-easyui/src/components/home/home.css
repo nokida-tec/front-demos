@@ -1,0 +1,47 @@
+.a1.accordion .accordion-header {
+  border-bottom-color: transparent;
+  background: #f3f5f6;
+  color: #768399;
+}
+.a1.accordion .accordion-body {
+  border-bottom-color: transparent;
+  background: #fcfcfd;
+  color: #768399;
+}
+.a1.accordion .accordion-header .panel-title {
+  color: #768399;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+}
+.a1.accordion .accordion-header-selected,
+.a1.accordion .accordion-header:hover {
+  color: #768399;
+  background: #eaeeef;
+}
+.a1 .item {
+  text-decoration: none;
+  display: block;
+  color: #616161;
+  padding: 7px 0 7px 20px;
+}
+.a1 .item:hover {
+  color: #428bca;
+}
+@import "//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+ .dataitem {
+   width: 120px;
+   height: 120px;
+   float: left;
+   margin: 6px;
+ }
+.product {
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+.selectComcss{
+  background: red;
+}
