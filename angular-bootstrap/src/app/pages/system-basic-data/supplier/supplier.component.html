@@ -1,0 +1,40 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-body>
+    <div class="row search-btn">
+      <div class="col-lg-3">
+        <div class="form-inline">
+          <button nbButton [size]="'medium'">
+            查询
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row search-con">
+      <label class="label label-height">货主</label>
+      <div class="col-sm-2 col-lg-2">
+        <input type="text" nbInput fullWidth id="inputEmail1" placeholder="货主" class="size-medium">
+      </div>
+      <label class="label label-height label-left">供应商编码</label>
+      <div class="col-sm-2 col-lg-2">
+        <input type="text" nbInput fullWidth  placeholder="供应商编码" class="size-medium">
+      </div>
+      <label class="label label-height label-left">供应商名称</label>
+      <div class="col-sm-2 col-lg-2">
+        <input type="text" nbInput fullWidth  placeholder="供应商名称" class="size-medium">
+      </div>
+      <label class="label label-height label-left">状态</label>
+      <div class="col-sm-2 col-lg-2">
+        <nb-select selected="0">
+          <nb-option value="0">请选择</nb-option>
+          <nb-option value="1">正常</nb-option>
+          <nb-option value="2">失效</nb-option>
+        </nb-select>
+      </div>
+    </div>
+
+
+
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>
