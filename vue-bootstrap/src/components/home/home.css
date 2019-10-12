@@ -1,3 +1,4 @@
-.com-list:hover{
+.com-list:hover, .third-word:hover{
   cursor: pointer;
 }
+
