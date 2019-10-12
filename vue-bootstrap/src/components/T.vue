@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div>
+<!--    <div>
        <headerNav></headerNav>
-    </div>
+    </div>-->
     <div>
-      <slideBar></slideBar>
+     <!-- <slideBar></slideBar>-->
       <router-view></router-view>
     </div>
   </div>
