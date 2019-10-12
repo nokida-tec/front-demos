@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slideBar></slideBar>
+    <!--<slideBar></slideBar>-->
     <router-view></router-view>
   </div>
 </template>
