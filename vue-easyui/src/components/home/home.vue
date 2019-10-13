@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-left: 200px">
+  <div >
     <Layout style="width:100%;min-height:600px;">
       <LayoutPanel region="west" style="width:200px;">
         <DataList style="height:200px"
