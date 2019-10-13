@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+// import config from '@/utils/config'
 import config, { debounce } from '@/utils/config'
 import './index.scss'
 export default {
@@ -57,6 +58,9 @@ export default {
         this.passwordType = 'password'
       }
     },
+    /* onLogin () {
+      this.$router.push({ path: '/' })
+    } */
     onLogin: debounce(function () {
       this.$refs.form.validate(valid => {
         if (!valid) {

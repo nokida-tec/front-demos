@@ -120,17 +120,16 @@
 </template>
 <script>
 // 引入 ECharts 主模块
-import echarts from 'echarts'
-import { ContentLoader } from 'vue-content-loader'
+// import echarts from 'echarts'
+// import { ContentLoader } from 'vue-content-loader'
 import { dashboard } from '@/apis/dashboard'
-import request from '@/utils/request'
+import request from '@/utils/request1'
 import './index.scss'
 
 var chartTrends
 export default {
   name: 'dashboard',
   components: {
-    ContentLoader
   },
   metaInfo () {
     return {
