@@ -42,22 +42,16 @@ service.interceptors.response.use(response => {
     var r = new FileReader()
     r.readAsText(b, 'utf-8')
     r.onload = function () {
-      let result = JSON.parse(r.result)
-      errorControl(result.message)
+      // let result = JSON.parse(r.result)
+      // errorControl(result.message)
     }
     return {
       success: false
     }
   } else if (resData.status !== 200) {
-    errorControl(resData.message)
+    // errorControl(resData.message)
   }
-
-  /* return resData */
-
-  return {
-    success: resData.status === 200,
-    ...resData
-  }
+  return resData
 }, error => {
   errorControl(error.response && error.response.data ? error.response.data.message : '服务器异常，请稍后再试')
   return {
