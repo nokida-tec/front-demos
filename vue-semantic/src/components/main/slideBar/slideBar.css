@@ -1,0 +1,14 @@
+.slider{
+  width:200px;
+  height:-webkit-fill-available;
+  border:1.5px solid #e6a357;
+  float:left;
+}
+
+.aaaaaaaa{
+  background-color: #669900;
+/*  height: 100%;*/
+/*  overflow: hidden;*/
+  overflow-y:scroll;
+  overflow-x:hidden;
+}

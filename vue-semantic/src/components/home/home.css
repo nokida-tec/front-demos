@@ -1,0 +1,6 @@
+.activeCom .content .header,.activeSec span{
+  color: #1779ba;
+}
+.com-header:hover,.third-header:hover{
+  cursor: pointer;
+}
