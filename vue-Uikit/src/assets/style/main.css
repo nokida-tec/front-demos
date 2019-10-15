@@ -1,0 +1,70 @@
+
+/*公共全局css*/
+html,body{
+  font-size:14px;
+  font-family: Microsoft YaHei !important;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding: 0;
+  overflow-x:hidden;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,a,textarea,input,button,span,em,strong,img,div {
+  -webkit-touch-callout: none;
+  -moz-touch-callout: none;
+  -ms-touch-callout: none;
+  touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  text-decoration: none;
+  font-family: Microsoft YaHei !important;
+}
+
+.left .el-tree{
+  background: none;
+  color: #ffffff;
+}
+
+.left .el-tree-node__label{
+  font-size: 18px;
+}
+
+.left .el-tree .el-tree-node, .left .el-tree .el-tree-node__content{
+  background: none;
+  color: #ffffff;
+}
+
+/*.left .el-tree .el-tree-node.is-focusable{
+  background: none;
+}*/
+
+.left .el-tree  .el-tree-node:focus>.el-tree-node__content{
+  background: none;
+}
+
+.left .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
+  background-color:rgba(67,255,95,0.3);
+}
+
+/*.left .el-tree .el-tree-node__content:hover, .left .el-tree .el-tree-node__content:active, .left .el-tree .el-tree-node__content:visited{
+  background: none;
+}
+
+.left .el-tree .el-tree-node__content:focus{
+  background: none;
+}*/
+
+.right .el-row{
+  margin: 0;
+}
+
+.right .el-row .el-col-8{
+  margin: 6px 0;
+}
