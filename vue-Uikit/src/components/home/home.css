@@ -1,0 +1,22 @@
+.com-ul{
+  padding: 12px;
+  border: 1px solid #dbdbdb;
+}
+.com-ul li{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+.com-ul li:last-child{
+  padding-bottom:0;
+  border-bottom: none;
+}
+.activeCom,.activeSec{
+  color: #1779ba;
+}
+.com-ul li:hover,.third-header:hover{
+  cursor: pointer;
+}
+
+.sec-ul>ul>li{
+  border-bottom: none;
+}

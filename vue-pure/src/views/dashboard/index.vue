@@ -200,8 +200,13 @@ export default {
       console.log(res2)
       this.tableData = res2
     },
-    selectCom (v) {
+    async selectCom (v) {
       this.isActive = v.id
+      let res = await this.getSection(null, v.id)
+      console.log(res)
+      this.secondItem = res
+      let res2 = await this.getEmp(null, res[0].id)
+      this.tableData = res2
     },
     setCheckedKeys () {
       this.$refs.tree.setCheckedKeys([0])
