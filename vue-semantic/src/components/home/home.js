@@ -34,7 +34,7 @@ export default {
       api.request('get',api.settings.baseUrl+'/organization/'+ v +'/suborg',null,(res,fn) =>{
         console.log(res);
         this.secondItem = res;
-        api.request('get',api.settings.baseUrl+'/organization/'+ res1[0].id +'/employee',null,(res2,fn) =>{
+        api.request('get',api.settings.baseUrl+'/organization/'+ res[0].id +'/employee',null,(res2,fn) =>{
           console.log(res2);
           this.tableData = res2
         })
