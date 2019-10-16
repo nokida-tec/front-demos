@@ -26,7 +26,7 @@
 
         <ul class="uk-nav-default uk-nav-parent-icon" style="height:295px; padding-top: 5px" #orgnization id="orgnization" uk-nav="multiple: true">
 
-            <li *ngFor="let key of tree_data; let i = index;" (click)="onTreeClick(i, key.id, $event)" [ngClass]="{'uk-parent': key.children }" [ngClass]="{'uk-active': key.id==tree_selection }">
+            <li *ngFor="let key of tree_data; let i = index;" (click)="onTreeClick(i, key.id, $event)" [ngClass]="{'uk-parent': key.children,'uk-active': key.id==tree_selection }" >
                 <a>{{key.text}}</a>
                 <ul class="uk-nav-sub" *ngIf="key.children" style="padding-left: 15px">
                     <li *ngFor="let subkey of key.children; let ii = index;" (click)="onTreeSubClick(ii, subkey.id, $event)" [ngClass]="{'uk-active': subkey.id==tree_selection }">
