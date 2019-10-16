@@ -1,0 +1,78 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Demo Of {{ title }}!
+    </h1>
+</div>
+
+<eui-layout style="width: 1000px; height:400px;">
+    <eui-layout-panel region="west" style="width:200px; padding-right: 5px">
+
+        <eui-datalist style="height:95px; padding-bottom: 5px" (selectionChange)="onListSelectedChange($event)" [data]="list_data" #company [(selection)]="list_selection" id="company" selectionMode="single">
+            <ng-template euiItemTemplate let-row>
+                <div class="product f-row">
+                    <div class="detail">
+                        <p>{{row.name}}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </eui-datalist>
+
+        <ul class="uk-nav" id="company_uikit" #company_uikit>
+            <li *ngFor="let key of list_data; let i = index;" (click)="onCompanyClick(key.id,$event)" [ngClass]="{'uk-active': key.id==list_selection }">
+                {{key.name}}
+            </li>
+        </ul>
+
+        <ul class="uk-nav-default uk-nav-parent-icon" style="height:295px; padding-top: 5px" #orgnization id="orgnization" uk-nav="multiple: true">
+
+            <li *ngFor="let key of tree_data; let i = index;" (click)="onTreeClick(i, key.id, $event)" [ngClass]="{'uk-parent': key.children }" [ngClass]="{'uk-active': key.id==tree_selection }">
+                <a>{{key.text}}</a>
+                <ul class="uk-nav-sub" *ngIf="key.children" style="padding-left: 15px">
+                    <li *ngFor="let subkey of key.children; let ii = index;" (click)="onTreeSubClick(ii, subkey.id, $event)" [ngClass]="{'uk-active': subkey.id==tree_selection }">
+                        <a>{{subkey.text}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </eui-layout-panel>
+
+    <eui-layout-panel region="center" style="width: 800px; padding-left: 5px">
+        <table class="uk-table  uk-table-divider">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let key of grid_data; let i = index;" (click)="onMemberClick(key.id,$event)" [ngClass]="{'uk-active': key.id==grid_selection }">
+                    <td>{{key.name}}</td>
+                    <td>{{key.sex}}</td>
+                    <td>{{key.age}}</td>
+                    <td>
+                        <button (click)="onEdit(i)">编辑</button>
+                        <button (click)="onDelete(i)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <eui-datagrid style="height: 450px;" [data]="grid_data" id="members" #members>
+            <eui-grid-column field="name" title="姓名"></eui-grid-column>
+            <eui-grid-column field="sex" title="性别" align="right"></eui-grid-column>
+            <eui-grid-column field="age" title="年龄" align="right"></eui-grid-column>
+            <eui-grid-column title="操作" width="30%">
+                <ng-template euiCellTemplate let-rowIndex="rowIndex">
+                    <button (click)="onEdit(rowIndex)">编辑</button>
+                    <button (click)="onDelete(rowIndex)">删除</button>
+                </ng-template>
+            </eui-grid-column>
+        </eui-datagrid>
+
+
+    </eui-layout-panel>
+</eui-layout>

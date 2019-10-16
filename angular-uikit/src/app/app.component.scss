@@ -1,0 +1,38 @@
+.product .detail {
+    align-self: center;
+}
+
+.product img {
+    height: 100px;
+    padding: 10px;
+}
+
+.product p {
+    margin: 0;
+    padding: 6px 0;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.uk-nav {
+    height: 95px;
+    padding-bottom: 5px
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.uk-active {
+    display: list-item;
+    background-color: #00bbee;
+    text-align: -webkit-match-parent;
+}
+
+.uk-nav-sub {
+    padding: 5px 0 5px 15px
+}
