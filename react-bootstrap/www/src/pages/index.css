@@ -1,0 +1,28 @@
+.home-row{
+    margin: 0;
+}
+.com-li:hover{
+    cursor: pointer;
+}
+.btn-margin{
+  margin:0 10px;
+}
+.tishi{
+    position: absolute;
+    right: 10px;
+    top:50px;
+    z-index: 1041;
+}
+.delts{
+    position: absolute;
+    right: 10px;
+    top:50px;
+    z-index: 1042;
+}
+.ts-con{
+ padding: 10px 50px;
+}
+
+.activeSec{
+    background: #5a9bcf;
+}
