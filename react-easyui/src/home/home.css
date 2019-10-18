@@ -1,0 +1,10 @@
+.com-li{
+    padding: 10px 0;
+}
+.item{
+ padding: 8px 5px;
+}
+
+.item:hover{
+    cursor: pointer;
+}
