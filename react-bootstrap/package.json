@@ -97,6 +97,7 @@
     "eslint-plugin-mocha": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
+    "gatsby-transformer-react-docgen": "^5.0.0",
     "execa": "^2.0.3",
     "fs-extra": "^8.1.0",
     "husky": "^3.0.0",
@@ -118,8 +119,12 @@
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
     "sinon": "^7.3.2",
+    "remark-slug": "^5.1.2",
     "sinon-chai": "^3.3.0",
     "typescript": "^3.5.3",
+    "gatsby-plugin-mdx": "1.0.52",
+    "gatsby": "2.17.0",
+    "gatsby-source-filesystem": "2.1.33",
     "webpack": "^4.35.3"
   },
   "dependencies": {
@@ -130,6 +135,7 @@
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "dom-helpers": "^3.4.0",
+    "gatsby": "^2.17.0",
     "invariant": "^2.2.4",
     "keycode": "^2.2.0",
     "moment": "^2.24.0",
