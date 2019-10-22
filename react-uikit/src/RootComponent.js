@@ -1,8 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import { version } from '../package.json';
+import './index.less'
+import {Toast} from 'react-uikits'
 
 import {
+    HomePage,
     BasicPage, ButtonPage,
     CalendarPage, CarouselPage, CheckBoxPage, CheckBoxGroupPage, ConfirmBoxPage, CardPage, CommentPage, CrumbPage,
     DatePickerPage, DateTimePickerPage, DropDownPage,
@@ -20,8 +24,11 @@ import {
     ValidatorPage,
 } from './page';
 
-import {CN} from './util/tools';
-import {NAV_MAP} from './constant';
+import {CN, TitleBlock} from './util/tools';
+import {COLORS, LARGE_VIEW, MOBILE_VIEW, NAV_MAP, NS, SMALL_VIEW, TABLET_VIEW} from './constant';
+import Axios from "axios";
+import {AxiosRequestConfig} from "./util/public.config";
+import Hightlight from "react-highlight";
 const NAV_MAP_KEYS = Object.keys(NAV_MAP)
 
 
@@ -85,19 +92,222 @@ const Footer = props => {
     );
 }
 
-const RootPage = props => {
-    return (
-        <div className={CN('root-page fluid table absolute-center')}>
-            <div className="row">
-                <div className="cell">
-                    <h1 className={CN('field')}>
-                        React UIkits
-                    </h1>
-                    <p className={CN('field')}>基于 React.js 快速搭建企业平台的组件化方案</p>
-                    <NavLink to="/component" className={CN('red button')}>更多...</NavLink>
-                    <button className="dot red">按钮</button>
+
+
+class MobileContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            companyList:[{id:1,name:"上海轩田1"},{id:2,name:"杭州轩田1"}],
+            secondItem: [],
+            tableData: [],
+            active:1,
+            activeIndex:3,
+            thirdId:0,
+        }
+    }
+    /* 初始化数据 */
+    csh(){
+        let values = null
+        Axios.get(`/companies`, AxiosRequestConfig(values))
+            .then((respones) => {
+                const result = respones.data;
+                this.setState({
+                    companyList: result,
+                    active: result[0].id
+                })
+                Axios.get('/organization/'+  result[0].id +'/suborg', AxiosRequestConfig(values))
+                    .then((res) => {
+                        const res1 = res.data;
+                        this.setState({
+                            secondItem: res1,
+                            activeIndex:res1[0].id
+                        })
+                        Axios.get('/organization/'+ res1[0].id +'/employee', AxiosRequestConfig(values))
+                            .then((respone) => {
+                                const res2 = respone.data;
+                                this.setState({
+                                    tableData: res2
+                                })
+                            }).catch((error) => {
+                            console.log("***************:获取人员列表失败");
+                        })
+                    }).catch((error) => {
+                    console.log("***************:获取二级失败");
+                })
+            }).catch((error) => {
+            console.log("***************:获取公司失败");
+        })
+    }
+    /* 获取二级部门 */
+    getSection(v,e){
+        let values = null
+        Axios.get('/organization/'+  v.id +'/suborg', AxiosRequestConfig(values))
+            .then((res) => {
+                const res1 = res.data;
+                this.setState({
+                    secondItem: res1,
+                    activeIndex:res1[0].id
+                })
+                Axios.get('/organization/'+ res1[0].id +'/employee', AxiosRequestConfig(values))
+                    .then((respone) => {
+                        const res2 = respone.data;
+                        this.setState({
+                            tableData: res2
+                        })
+                    }).catch((error) => {
+                    console.log("***************:获取人员列表失败");
+                })
+            }).catch((error) => {
+            console.log("***************:获取二级失败");
+        })
+    }
+    /* 获取人员列表 */
+    getEmp (v,e){
+        let values = null
+        Axios.get('/organization/'+v.id +'/employee', AxiosRequestConfig(values))
+            .then((respone) => {
+                const res2 = respone.data;
+                this.setState({
+                    tableData: res2,
+                    activeIndex: v.id
+                })
+            }).catch((error) => {
+            console.log("***************:获取人员列表失败");
+        })
+    }
+    /*3级获取人员*/
+    getThirdEmp(v,e){
+        let values = null
+        Axios.get('/organization/'+v.id +'/employee', AxiosRequestConfig(values))
+            .then((respone) => {
+                const res2 = respone.data;
+                this.setState({
+                    tableData: res2,
+                })
+            }).catch((error) => {
+            console.log("***************:获取人员列表失败");
+        })
+    }
+    /* 选择公司 */
+    selectCom(selection) {
+        console.log(selection)
+        this.getSection(selection)
+        this.setState({ active: selection.id })
+    }
+    selectSec (v, e) {
+        console.log(v)
+        this.setState({ thirdId: -1})
+        this.getEmp(v)
+    }
+    selectThird(v,e){
+        console.log(v)
+        this.setState({ thirdId: v.id })
+        this.getThirdEmp(v)
+    }
+    edit(v){
+        console.log(v)
+        Toast.success('编辑成功')
+    }
+    del(v,e){
+        console.log(e)
+        console.log(v)
+        const arrs= t;
+        arrs.splice(v,1);
+        this.setState({
+            del: v,
+            tableData:arrs
+        })
+    }
+    componentWillMount(){
+        this.csh()
+    }
+    render() {
+        let tableDom = this.state.tableData.map((item, index) => (
+            <tr>
+                <td width="150px">{item.id}</td>
+                <td width="200px">{item.name}</td>
+                <td width="400px">{item.email}</td>
+                <td>
+                    <button className={"dot blue btn" } onClick={this.edit.bind(item)}>编辑</button>
+                    <button className={'dot red btn'} onClick={()=>{
+                        const arrs= this.state.tableData;
+                        arrs.splice(index,1);
+                        this.setState({
+                            del: index,
+                            tableData:arrs
+                        })
+                        Toast.success('删除成功')
+                    }}>删除</button>
+                </td>
+            </tr>
+        ))
+        return (
+            <div className={'home'}>
+                <div className="dot grid">
+                    <div className="row">
+                        <div className="column-2">
+                            <div className="dot list com-list">
+                                {
+                                    this.state.companyList.map((item, index) => (
+                                        <div className={`com-li item ${this.state.active==item.id?"active":''}`} onClick={this.selectCom.bind(this,item)}>
+                                            <div className="content">{item.name}</div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            <div className={'white-con'}></div>
+                            <div className={'next-con'}>
+                                <ul className="dot  list">
+                                    {
+                                        this.state.secondItem.map((item, index) => (
+                                            <div>
+                                                <li className="item cursor-li">
+                                                    <div className={`content sec-tle ${this.state.activeIndex==item.id?"activeIndex":''}`} onClick={this.selectSec.bind(this,item)}>{item.name}</div>
+                                                    <ul className={`list item hidden ${this.state.activeIndex==item.id?"show":''}`}>
+                                                        {
+                                                            item.children.map((v, i) => (
+                                                                <li className="item third-item cursor-li">
+                                                                    <div className={`content third-tle ${this.state.thirdId==v.id?"thirdId":''}`} onClick={this.selectThird.bind(this,v)}>{v.name}</div>
+                                                                </li>
+                                                            ))
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            </div>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="column-14">
+                            <div className="dot card">
+                                <table className="dot table">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th><th>姓名</th><th>Email</th><th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {tableDom}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        );
+    }
+}
+
+const RootPage = props => {
+    return (
+        <div className={CN('root-page fluid')}>
+            <MobileContainer></MobileContainer>
         </div>
     );
 }
@@ -165,7 +375,7 @@ const BaseComponent = () => {
     return (
         <Router>
             <article>
-                <Header/>
+               {/* <Header/>*/}
                 <Switch>
                     <Route exact path="/" component={RootPage}></Route>
                     <Route path="/component" component={ContentPage}></Route>
@@ -175,7 +385,7 @@ const BaseComponent = () => {
                     <Route path="/temp" component={ContentPage}></Route>
                     <Route component={RootPage}></Route>
                 </Switch>
-                <Footer/>
+               {/* <Footer/>*/}
             </article>
         </Router>
     )

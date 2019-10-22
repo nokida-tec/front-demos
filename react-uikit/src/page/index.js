@@ -1,3 +1,4 @@
+import {HomePage} from './HomePage'
 import {BasicPage} from './BasicPage'
 import {ButtonPage} from './ButtonPage'
 import {CalendarPage} from './CalendarPage'
@@ -46,6 +47,7 @@ import {ValidatorPage} from './ValidatorPage'
 import {InputNumberPage} from './InputNumberPage'
 
 export  {
+    HomePage,
     BasicPage,
     ButtonPage,
     CalendarPage,
