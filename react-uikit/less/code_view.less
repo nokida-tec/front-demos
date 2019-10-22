@@ -1,0 +1,47 @@
+/* code view */
+@import url('meta');
+@import url('color');
+
+@{NS}.code-view {
+    .bordered;
+    padding: @gap;
+    .code-trigger {
+        .bordered;
+        cursor: pointer;
+        text-align: center;
+        display: block;
+        z-index: 10;
+        >span {
+            .primary_link;
+            display: block;
+            margin: auto;
+            text-align: center;
+            font-size: 13px;
+            width: 100px;
+            overflow: hidden;
+            line-height: @gap * 2;
+            height: @gap * 2;
+        }
+        &:hover {
+            background: @mini_gray;
+        }
+    }
+    .code-detail {
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        &.active {
+            max-height: none;/*ie*/
+            max-height: initial;
+            opacity: 1;
+            visibility: visible;
+            >pre {
+                opacity: 1;
+                visibility: visible;
+                max-height: 400px;
+                overflow: auto;
+            }
+        }
+    }
+}

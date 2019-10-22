@@ -1,0 +1,259 @@
+@import url('meta');
+@import url('color');
+@import url('media');
+
+@__form_label_width: 130px;
+
+.__displayLabel(){
+    background: initial;
+    text-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    font-size: @line_height;
+    color: @deep_gray;
+    word-wrap: break-word;
+    display: block;
+    line-height: @padding * 2 + 4px;
+}
+
+/* fields 栅格 */
+.__makeFields(@n, @i: 1) when (@i =< @n) {
+    .fields-@{i} {
+        .clearfix;
+        font-size: 0;
+        position: relative;
+        margin: 0 @padding * -1 @__margin_bottom * -1;
+        >.field {
+            padding: 0 @padding;
+            font-size: @line_height;
+            width: 100% / @i;
+            float: left;
+        }
+    }
+    .fields {
+        >.field-@{i} {
+            position: relative;
+            >label:not(@{NS}) {
+                .__displayLabel();
+            }
+            font-size: @line_height;
+            padding: 0 @padding;
+            line-height: @padding * 3 + 4px;
+            float: left;
+            width: (@i / @column_count) * 100%;
+            margin-bottom: @__margin_bottom;
+            .dropdown, .datepicker, .datetime-picker, .timepicker, .timeinput {
+                min-width: initial;
+                width: 100%;
+            }
+            /*error hint*/
+            &.error {
+                .__errorHint();
+                input, select, textarea {
+                    border-color: @red;
+                }
+            }
+        }
+    }
+    .__makeFields(@n, (@i + 1));
+}
+
+.__inlineField(@n, @i: 1) when (@i =< @n) {
+    >.fields-@{i} {
+        margin-left: @__form_label_width - @padding;
+    }
+    .__inlineField(@n, (@i + 1));
+}
+
+
+
+.__mobileFields(@n, @i: 1) when (@i =< @n) {
+    .fields-@{i} {
+        margin: @__margin_bottom * -0.5 0 !important;
+        >.field {
+            width: 100%;
+            padding: @__margin_bottom * 0.5 0;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+    .fields {
+        >.field-@{i} {
+            width: 100%;
+            padding: @__margin_bottom * 0.5 0;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+    .__mobileFields(@n, (@i + 1));
+}
+
+.__errorHint() {
+    .error-hint {
+        position: absolute;
+        left: 0;
+        bottom: @__margin_bottom * -1.2;
+        padding: inherit;
+        margin: 0;
+    }
+}
+
+@{NS}.form {
+    @__margin_bottom: @padding * 2;
+    padding: @padding * 2;
+    width: 100%;
+    .clearfix;
+    .group {
+        margin-bottom: @__margin_bottom;
+        >label {
+            .__displayLabel();
+        }
+        input[type="text"], 
+        input[type="number"], 
+        input[type="url"], 
+        input[type="tel"], 
+        input[type="password"], 
+        input[type="email"], 
+        input[type="date"], 
+        input[type="datetime-local"], 
+        input[type="time"], textarea, select {
+            width: 100%;
+        }
+        .__makeFields(16);
+        /*列*/
+        .field {
+            position: relative;
+            margin-bottom: @__margin_bottom;
+            line-height: @padding * 3 + 4px;
+            >label:not(@{NS}) {
+                .__displayLabel();
+            }
+            /*非内联*/
+            &:not(.inline) {
+                >.dropdown, >.datepicker, >.datetime-picker, >.timepicker, >.timeinput {
+                    min-width: initial;
+                    width: 100%;
+                }
+            }
+            /*内联*/
+            &.inline {
+                >* {
+                    display: inline-block !important;
+                    margin: 0 @padding;
+                    vertical-align: middle;
+                }
+                >input {
+                    &[type="text"], 
+                    &[type="number"], 
+                    &[type="url"], 
+                    &[type="tel"], 
+                    &[type="password"], 
+                    &[type="email"], 
+                    &[type="date"], 
+                    &[type="datetime-local"], 
+                    &[type="time"]{
+                        width: @__form_label_width - @padding * 3;
+                        display: inline;
+                        &.max {
+                            width: @__form_label_width + @padding * 3;
+                        }
+                        &.mini {
+                            width: @padding * 4;
+                            text-align: center;
+                        }
+                    }
+                }
+                >select {
+                    width: @__form_label_width - @padding * 3;
+                    display: inline;
+                    &.max {
+                        width: @__form_label_width + @padding * 3;
+                    }
+                    &.mini {
+                        width: @padding * 4;
+                        text-align: center;
+                    }
+                }
+                >:first-child {
+                    margin-left: 0;
+                }
+                >:last-child {
+                    margin-right: 0;
+                }
+            }
+            &.error {
+                .__errorHint();
+                input, select, textarea {
+                    border-color: @red;
+                }
+            }
+        }
+        .fields {
+            .clearfix;
+            font-size: 0;
+            position: relative;
+            margin: 0 -1 * @padding @padding * -1;
+        }
+    }
+
+    &.inline {
+        &.trim .group {
+            >label:nth-child(1) {
+                text-align: right;
+            }
+        }
+        .group {
+            position: relative;
+            >label:nth-child(1) {
+                width: @__form_label_width - @padding;
+                vertical-align: top;
+                line-height: @padding * 3 + 4px;
+                padding-right: @padding;
+                float: left;
+            }
+
+            >.field {
+                margin-left: @__form_label_width;
+            }
+            .__inlineField(16);
+            >.fields {
+                margin-left: @__form_label_width - @padding;
+            }
+        }
+
+        >.action {
+            margin-left: @__form_label_width;
+        }
+    }
+    /* 无内边距 */
+    &.basic {
+        padding: 0;
+    }
+}
+
+@media @mobile_view {
+    @__margin_bottom: @padding * 1.6;
+    @{NS}.form {
+        padding: @padding * .5;
+        .field {
+            line-height: @padding;
+        }
+    }
+    @{NS}.inline.form .group>label:nth-child(1) {
+        width: auto;
+        float: none;
+        text-align: initial !important;
+    }
+    @{NS}.form .group {
+        margin-bottom: @__margin_bottom * .5;
+        >.fields {
+            margin: @__margin_bottom * -0.5 0 !important;
+        }
+        >.field, >.fields {
+            margin-left: 0 !important;
+        }
+        .__mobileFields(16);
+    }
+}

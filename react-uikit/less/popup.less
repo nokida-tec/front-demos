@@ -1,0 +1,144 @@
+@import url('meta.less');
+@import url('glue.less');
+@import url('button.less');
+@import url('transition.less');
+
+.popup {
+    @short: 6px;
+    @long: 8px;
+    @base: -17px;
+
+    position: relative;
+    display: inline-block;
+
+    .__border_base {
+        border-width: inherit;
+        border-color: inherit;
+    }
+
+    ._trigger {
+        display: inline-block;
+        cursor: pointer;
+        .button {
+            margin-right: 0;
+        }
+    }
+
+    ._wrap {
+        display: block;
+        position: absolute;
+        ._content {
+            .bordered;
+            .box_shadow;
+            position: absolute;
+            z-index: 100;
+            max-width: 350px;
+            min-width: 150px;
+            background: @white;
+            border-radius: @radius;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid @light_gray;
+        }
+
+        ._arrow {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: @long @short;
+            border-color: @light_gray transparent transparent transparent;
+            &:before {
+                content: '';
+                position: absolute;
+                border-style: solid;
+                border-width: @long @short;
+            }
+        }
+
+        &._top ._arrow {
+            left: 50%;
+            margin-left: -@short;
+            bottom: @base;
+            &:before {
+                .__border_base;
+                left: inherit;
+                margin-left: -@short;
+                bottom: -@short;
+                border-top-color: @white;
+            }
+        }
+
+        &._left ._arrow {
+            border-width: @short @long;
+            right: @base;
+            top: 50%;
+            margin-top: -@long;
+            border-color: transparent transparent transparent @light_gray;
+            &:before {
+                .__border_base;
+                top: inherit;
+                margin-top: -@short;
+                right: -@short;
+                border-left-color: @white;
+            }
+        }
+
+        &._right ._arrow {
+            top: 50%;
+            left: @base;
+            margin-top: -@long;
+            border-width: @short @long;
+            border-color: transparent @light_gray transparent transparent;
+            &:before {
+                .__border_base;
+                top: inherit;
+                margin-top: -@short;
+                left: -@short;
+                border-right-color: @white;
+            }
+        }
+
+        &._bottom ._arrow {
+            left: 50%;
+            top: @base;
+            margin-left: -@short;
+            border-color: transparent transparent @light_gray transparent;
+            &:before {
+                .__border_base;
+                left: inherit;
+                top: -@short;
+                margin-left: -@short;
+                border-bottom-color: @white;
+            }
+        }
+    }
+    .basic_transition;
+}
+
+@{NS}.confirm-box {
+    ._action {
+        margin-top: 10px;
+        font-size: 80%;
+        text-align: center;
+        ._cancel, ._confirm {
+            cursor: pointer;
+            display: inline-block;
+            .button {
+                margin-right: 0;
+            }
+        }
+        ._confirm {
+            margin-right: 5px;
+        }
+    }
+}
+
+@{NS}.tooltip {
+    ._wrap {
+        ._content {
+            padding: @padding/2;
+        }
+    }
+}

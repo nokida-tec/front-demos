@@ -1,0 +1,164 @@
+@import url('../../less/main.less');
+@import url('./highlight.less');
+
+.__column(@n, @i: 1) when (@i =< @n) {
+    .column-@{i} {
+      position: relative;
+      background: @primaryColor;
+      color: @mildColor;
+      border: 1px solid @light_gray;  
+    }
+ .__column(@n, (@i + 1));
+}
+
+body, page, #root {
+    height: 100%;
+}
+
+.main-nav {
+    color: @white;
+    border-bottom: 1px solid @light_gray;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background-color: @white;
+    a {
+        font-weight: 400;
+    }
+    .link {
+        .css_transition;
+        padding: 24px;
+        border-bottom: 2px solid transparent;
+        &.active {
+            border-color: @primaryColor;
+        }
+    }
+}
+
+.main-page {
+    padding-top: @gap * 4;
+}
+
+.main-aside {
+    padding: @gap * 2 @gap * 2 @gap * 2 0 !important;
+    h4 {
+        color: @deep_gray;
+    }
+    a {
+        color: @dark_gray;
+        display: block;
+        padding: 5px;
+        font-size: 13px;
+        &.active {
+            .primary_link;
+        }
+    }
+}
+
+.main-content {
+    border-left: 1px solid @light_gray;
+    padding: @gap * 2 !important;
+    min-height: @gap * 50;
+}
+
+/*root page*/
+.root-page {
+    background-color: @mini_gray;
+}
+
+/*basic page*/
+
+.basic-page {
+    .color-item {
+        padding: 10px;
+    }
+}
+
+/*footer*/
+
+.main-footer {
+    height: @gap * 4;
+    background-color: @primaryColor;
+    color: @white;
+    margin-top: @gap * 5;
+    .container {
+        height: 100%;
+    }
+    .table {
+        height: 100%;
+    }
+    h4 {
+        font-weight: 400;
+        color: inherit;
+    }
+    a {
+        font-size: 14px;
+        color: inherit;
+        padding: @gap;
+    }
+}
+
+/* carousel page */
+
+.carousel {
+    width: 300px;
+    margin: auto;
+}
+
+/*pin page*/
+
+.pin-page {
+    min-height: 2000px;
+}
+
+.pin-card {
+    .bordered;
+    background-color: @tiny_gray;
+    display: block;
+    width: 300px;
+    padding: 10px 20px;
+}
+
+/*slide menu page*/
+.slide-menu ._content {
+    padding: @gap;
+}
+
+/*button page*/
+.button-example {
+    .button {
+        margin-bottom: @padding;
+    }
+}
+
+/*grid page*/
+.grid-example {
+    .__column(16);
+    .column {
+        background: @primaryColor;
+        color: @mildColor;
+        border: 1px solid @light_gray;
+    }
+    .basic .column {
+        background: initial;
+        border: initial;
+        color: initial;
+    }
+}
+
+/*label page*/
+.label-example {
+    .label {
+        margin-bottom: @padding;
+    }
+}
+
+/*icon page*/
+.icon-example {
+    .icon-item {
+        cursor: pointer;
+    }
+}
