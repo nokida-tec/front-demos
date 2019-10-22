@@ -1,0 +1,36 @@
+.com-list{
+    border: 1px solid #ccc;
+}
+.com-li:hover,.third-li:hover{
+    cursor: pointer;
+}
+.accordion-tle{
+    background: #55acee;
+    color: #ffffff;
+}
+.ui.link.list .item.com-li{
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    color: #282c34;
+}
+.ui.link.list .item.com-li:last-child{
+    border-bottom: none;
+}
+.ui.link.list.list .active.item{
+    color: #1779ba;
+}
+.white-div{
+    width: 100%;
+    height: 25px;
+}
+.ui.list>.item.third-li{
+    padding: 10px 0px 10px 25px;
+}
+
+.accord-con{
+    border: 1px solid #ccc;
+    min-height: 300px;
+}
+.third-tle{
+    color: #1779ba;
+}
