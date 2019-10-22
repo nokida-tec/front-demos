@@ -1,0 +1,57 @@
+@import url('meta');
+@import url('glue');
+@import url('color');
+
+.__cardView() {
+    .bordered;
+    .box_shadow;
+    display: block;
+    background-color: @white;
+    border: 1px solid @tiny_gray;
+    margin-bottom: @padding;
+    &>.image:first-child {
+        border-radius: @radius @radius 0 0;
+        overflow: hidden;
+    }
+    &>.content, &>.extra, &>.header {
+        padding: @padding;
+    }
+    &>.header {
+        color: @black;
+    }
+    &>.extra {
+        font-size: .85em;
+        color: @dark_gray;
+    }
+}
+
+@{NS}.card {
+    .__cardView();
+}
+
+.__cardSize(@size) {
+    >.card {
+        width: calc(~'100%/@{size} - @{padding}* 2');
+    }
+}
+
+.__makeEqualCards(@n, @i: 1) when (@i =< @n) {
+    &.cards-@{i} {
+        .__cardSize(@i);
+    }
+    .__makeEqualCards(@n, (@i + 1));
+}
+
+@{NS}.cards {
+    margin: 0 -1 * @padding;
+    .clearfix;
+    >.card {
+        .__cardView();
+        margin: @padding;
+        width: calc(~'25% - @{padding} * 2');
+        float: left;
+        line-height: 100%;
+        height: 100%;
+    }
+    .__makeEqualCards(@column_count)
+}

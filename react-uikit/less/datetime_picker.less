@@ -1,0 +1,126 @@
+@import url('meta');
+@import url('glue');
+@import url('button');
+
+@{NS}.datetime-picker {
+    @__timepickerWidth: @min_component_width;
+    display: inline-block;
+    width: @__timepickerWidth;
+    position: relative;
+    >._input {
+        position: relative;
+        input {
+            width: 100%;
+        }
+        i:after {
+            content: 'date_range';
+            .input_icon;
+            color: @primaryColor;
+        }
+    }
+    ._timepicker {
+        width: @__timepickerWidth * 1.25;
+        >._section {
+            box-shadow: none;
+            &:before, &:after {
+                content: none;
+            }
+        }
+        ._list {
+            width: @__timepickerWidth * 1.25 / 3;
+        }
+    }
+    
+    /* position */
+    &._top {
+        >._wrap {
+            top: initial;
+            bottom: @padding * 4.2;
+            ._timepicker, ._datepicker {
+                &:before, &:after {
+                    top: initial;
+                    bottom: -14px;
+                    border-color: @light_gray transparent transparent transparent;
+                }
+                &:after {
+                    bottom: -12px;
+                    border-color: @mini_gray transparent transparent transparent;
+                }
+            }
+        }
+    }
+
+    &._right {
+        >._wrap {
+            top: 0;
+            left: @__timepickerWidth + 8px;
+            ._timepicker, ._datepicker {
+                &:before, &:after {
+                    top: 10px;
+                    left: -14px;
+                    border-color: transparent @light_gray transparent transparent;
+                }
+                &:after {
+                    left: -12px;
+                    border-color: transparent @mini_gray transparent transparent;
+                }
+            }
+        }
+    }
+
+    &._left {
+        >._wrap {
+            top: 0;
+            left: @__timepickerWidth * -1.5 - 8px;
+            ._timepicker, ._datepicker {
+                &:before, &:after {
+                    top: 10px;
+                    left: @__timepickerWidth * 1.5;
+                    border-color: transparent transparent transparent @light_gray;
+                }
+                &:after {
+                    left: @__timepickerWidth * 1.5 - 2px;
+                    border-color: transparent transparent transparent @mini_gray;
+                }
+            }
+        }
+    }
+
+    >._wrap {
+        .bordered;
+        .box_shadow;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: @white;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+        top: @padding * 4.2;
+        ._timepicker, ._datepicker {
+            .top_angle;
+        }
+        .calendar, ._timepicker ._section {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            margin-bottom: @padding;
+            border-radius: 0;
+        }
+        ._action {
+            overflow: hidden;
+            padding: 0 @padding @padding;
+            font-size: @padding * 1.2;
+            ._selector {
+                .__btn;
+                ._FONT_PADDING(14, 7);
+            }
+            ._button {
+                .__btn;
+                ._FONT_PADDING(14, 7);
+                float: right;
+                margin-right: 0;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,192 @@
+@import url('meta');
+@import url('color');
+
+.text {
+    &-center {
+        text-align: center !important;
+    }
+    &-left {
+        text-align: left !important;
+    }
+    &-right {
+        text-align: right !important;
+    }
+    &-major {
+        font-size: 18px;
+        font-weight: 500;
+    }
+    &-content {
+        font-size: 16px;
+    }
+    &-extra {
+        font-size: 12px;
+    }
+}
+
+.float {
+    &-left {
+        float: left !important;
+    }
+    &-right {
+        float: right !important;
+    }
+    &-none {
+        float: none !important;
+    }
+}
+
+.field {
+    display: block;
+    margin-bottom: @line_height;
+    .clearfix;
+}
+
+@{NS}.module {
+    .clearfix;
+    display: block;
+    padding: @padding;
+    border: 1px solid @light_gray;
+    background-color: @white;
+    margin-bottom: @padding;
+    &.basic {
+        border: none;
+        background-color: initial;
+    }
+}
+
+.absolute-center {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    ._AB_CENTER();
+}
+
+.disabled, ._disabled {
+    ._NO_USER_SELECT();
+    cursor: not-allowed !important;
+    color: @gray !important;
+}
+
+.break-word {
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.bordered {
+    border: 1px solid @light_gray;
+    border-radius: @radius;
+}
+
+.box_shadow {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.link {
+    color: @deep_gray;
+    cursor: pointer;
+    &:hover {
+        color: @dark_gray;
+    }
+}
+
+.primary_link {
+    .link;
+    color: @primaryColor;
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.blue_link {
+    .link;
+    color: @blue;
+    &:hover {
+        color: @light_blue;
+    }
+}
+
+.revert_link {
+    cursor: pointer;
+    color: @tiny_gray;
+    &:hover {
+        color: @white;
+    }
+}
+
+.fluid {
+    width: 100% !important;
+    display: block;
+}
+
+._LOADING {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,.3);
+        visibility: visible;
+        z-index: 100;
+    }
+    &:before {
+        @_border_width: @padding * 0.2;
+        content: '';
+        position: absolute;
+        border-radius: @padding * 1.5;
+        border-width: @_border_width;
+        width: @padding * 3;
+        height: @padding * 3;
+        left: 50%;
+        top: 50%;
+        margin-left: @padding * -1.5;
+        margin-top: @padding * -1.5;
+        z-index: 1000;
+        border-style: solid;
+        border-color: transparent;
+        border-top-color: @dull_gray;
+        -webkit-animation: .7s linear infinite spin_loader;
+        -moz-animation: .7s linear infinite spin_loader;
+        -o-animation: .7s linear infinite spin_loader;
+        animation: .7s linear infinite spin_loader;
+    }
+}
+
+.top_angle {
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        top: -14px;
+        left: 16px;
+        border: 7px solid;
+        border-color: transparent transparent @light_gray transparent;
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
+    }
+    &:after {
+        top: -12px;
+        border-color: transparent transparent @white transparent;
+    }
+}
